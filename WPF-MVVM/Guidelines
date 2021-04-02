@@ -1,1 +1,4 @@
 
+#MVVM and WPF
+Model-View-ViewModel has been known well before the WPF emerged ([MVP](https://martinfowler.com/eaaDev/uiArchs.html) is another name). WinForms can and shall be MVVM 
+
