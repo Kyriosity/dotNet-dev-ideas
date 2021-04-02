@@ -1,2 +1,2 @@
 # General ideas and guidelines for creating .NET applications
-Everything here can be marked as IMHO
+Everything in this section is only layout and subject of IMHO (in my humble opinion).
