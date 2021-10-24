@@ -54,7 +54,7 @@ Make use of `TargetNullValue` and `FallbackValue`. This will greatly help in fin
 ```
  
 NOTE: TargetNull and Fallback are also important settings for enabling of *actions*.  
-Challenge: no idea how to workaround acync loading. Then both setting will mislead users. 
+Challenge: I have no idea how to workaround acync loading. When both setting will mislead users. 
 
 # Tools to use
 [Snoop WPF](https://github.com/snoopwpf) is a freeware, and looks to be a mature, effective inspector.
