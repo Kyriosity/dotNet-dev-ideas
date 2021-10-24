@@ -1,7 +1,7 @@
 # MVVM and WPF: Getting on and guidelines
-Model-View-ViewModel was known well before Microsoft(r) released its WPF ([MVP](https://martinfowler.com/eaaDev/uiArchs.html) is another name). Also WinForms can be on MVVM, since Binding technics in WPF controls are inhereted from there.  
+Model-View-ViewModel was known well before Microsoft(r) released its WPF ([MVP](https://martinfowler.com/eaaDev/uiArchs.html) is another name). Also WinForms can be wel off on MVVM, since Binding technics in WPF controls are inhereted from there.  
 However it was WPF that made a symbiosis with MVVM.
-Very successfull ans stable Visual Studio 2010 was written from scratch in WPF on MVVM pattern.
+Rather successfull ans stable Visual Studio 2010 was written from scratch in WPF on MVVM pattern.
  
 ## Model
 Model (*M*) is NOT data. It's abstraction of data **and business**. Data may be 
