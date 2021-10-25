@@ -6,7 +6,7 @@ Rather successfull ans stable Visual Studio 2010 was written from scratch in WPF
 ## Model
 Model (*M*) is NOT data. It's abstraction of data **and business**. Data may be 
 + a database, cloud, pipe, service
-+ hardcoded, stubbed, mocked or randomized
++ hardcoded, stubbed, mocked or random
 + persistent and not
 
 There're could be no Model at all.&nbsp;&nbsp;<sup>**_mvw**</sup>
@@ -33,9 +33,11 @@ The rule of thumb - *divide et impera*. Divide into user controls, resources, el
 
 &nbsp;&nbsp;<sup>**_xaml**</sup><sub>&nbsp;&nbsp;Apropos, pronounced *zammel*
 
-## Converters
+## WPF Converters
  
 ### Naming and parametrization
+Consider the out-of-the box BooleanToVisibilityConverter in WPF. 
+ What if i'd like to 
 Consider usually met paired converters, like `RunStatusToBoolean` and `InvertedRunStatusToBoolean`.
 What's repellent? 
 
