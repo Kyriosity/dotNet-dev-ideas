@@ -16,9 +16,9 @@ There're could be no Model at all.&nbsp;&nbsp;<sup>**_mvw**</sup>
 ## ViewModel
 + A rather good definition of ViewModel - *converter on steroids* - was done in [The Philosophies of MVVM](https://joshsmithonwpf.wordpress.com/2008/12/01/the-philosophies-of-mvvm/) 
 
-+ ViewModel (*VM*) shall not know about View at all - any UI declarations here, like colors, sizes, layout, sound are principally wrong.  
++ ViewModel (*VM*) shall not know about View at all - any UI declarations there, like colors, sizes, layout, sound are principally wrong.  
 
-Back to the *View*. When dealing with something complexer than literal values and objects, converters must render no UX artifacts, like color, size, font, *skin*.
+When dealing with something complexer than literal values and objects, ViewModel must render no UX artifacts, like color, size, font, *skin*.
 
 + It outght to be 'info', 'alarm', 'warning', 'off-time', 'off-line', 'low bandwidth', "untrusted". And the *View* shall care about turning them into proper UX elements.
 
