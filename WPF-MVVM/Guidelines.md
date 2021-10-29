@@ -79,7 +79,7 @@ With more logically justified parameters in one converter even more class declar
 Make use of `TargetNullValue` and `FallbackValue`, and this will greatly help to find binding bugs in development time, or clearly inform users.
 
  ```
-<Text="{Binding UserName, 
+<Label Content="{Binding UserName, 
         NullValue='!null value!', FallbackValue='!binding error!' }"/>
 ```
 NOTE: TargetNull and Fallback are also important for enabling of actions/commands.  
