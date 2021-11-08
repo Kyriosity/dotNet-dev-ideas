@@ -1,7 +1,9 @@
 # General ideas for .NET development
-Everything in this repository is the subject of IMHO (in my humble opinion). I could have misunderstood or misssed some points as well.  It may also contain errors and mistakes. 
+Everything in this repository is the subject of **IMHO** and may look **banal**. I could have misunderstood or missed some points as well. Errors and mistakes are possible. 
 
 With this said, any rational critic (review) is very welcome.
+
+&nbsp;&nbsp;<sub><sup>**_imho**</sup>&nbsp;&nbsp;**I**n **M**y **H**umble **O**pinion</sub>
 
 ## Intro
 I personally keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#. 
@@ -53,3 +55,33 @@ class Benchmark : IDisposable
    }
 }
 ```
+
+## Traps
+It could be trivia for many but i met following flows im some projects, and keep them as a reminder (or checklist)
+### Recursion
+"Deep" recursive calls may lead to memory leaks. It's easy to forget about that.
+
+### LINQ limitations
+LINQ is a nice tool but on large data volumes it's a performance curse.
+
+### Improper multithreading in UI
+When a thread is the choice to auto-save a doc, prove something on-the-fly, it will raise access exceptions (sometimes silent).
+
+The solution is to use Idle slots in UI Dispatcher (this way spellcheck works in Microsoft&reg; Word&trade;).
+
+### Overall error handling
+..
+Handle only what you know, i.e. application specific exceptions. "Eating" Out-of-memory or disk exceptions may make a big fat system bug.
+
+### Replacing NullException with check
+Null pointer exceptions are known as *billion dollar mistake* (and the same value prize for guys with criminal energy). But next workarounds are even worse.
+```csharp
+if (person is null)
+      return;
+      
+if (person.HasWonJackpot && person.EMail is not null)
+       NotifyImmediately(person);
+```
+Ideas ?
++ Constraints
++ 
