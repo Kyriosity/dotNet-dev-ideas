@@ -1,9 +1,7 @@
 # General ideas for .NET development
-Everything in this repository is the subject of **IMHO** and may look **banal**. I could have misunderstood or missed some points as well. Errors and mistakes are possible. 
+Everything in this repository is the subject of IMHO (in my humble/honest opinion). I could have misunderstood or misssed some points as well. Errors and mistakes are possible.
 
 With this said, any rational critic (review) is very welcome.
-
-&nbsp;&nbsp;<sub><sup>**_imho**</sup>&nbsp;&nbsp;**I**n **M**y **H**umble **O**pinion</sub>
 
 ## Intro
 I personally keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#. 
@@ -12,8 +10,11 @@ It evolves nonstop, giving us up-to-date concise and readable syntax. Its team l
 
 In my comprehension, the mission of C# is: you write clean code and .NET cares that it becomes effective executible. Though in C# one gets destructors, finalizers, garbage collecting, memory allocation, "door" to unsafe coding  - programming them doesn't look sound (unless it's very specific task or not conforming 3d party).
 
+## Commercial frameworks
+I've discussed them already [here](WPF-MVVM/Guidelines.md).
+
 ## Practical hints
-That's that i learned, like and follow.
+That's what i've learned, like and follow.
 ### Negate with XOR
 Following snippets may look attractive to negate (inverse) a boolean:
 ```diff csharp
@@ -33,7 +34,7 @@ var isLoading = false;
 if (!pauseComplete(out var msRemaining))
    DoSomething();
 ```
-### Use *using* for benchmarks
+### Benchmark with *using*
 For simple logging, profiling put the benchmarking on <code>ctor</code> and <code>Dispose()</code> of the being *used*.
 [CallerMemberName] in the constructor will prevent mistaken names of the *benchmarked*.
 ```csharp
@@ -47,41 +48,39 @@ class Benchmark : IDisposable
    string _caller;
    public Benchmark([CallerMemberName] string caller = "<undefined>") {
       _caller = caller;
-      // log start here
+      // start log here id-d with _caller
    }
 
    public void Dispose() {
-       // log finishe here with _caller id
+       // finish log here id-d with _caller
    }
 }
 ```
+### Delete your temp data
+The naming of *temporary* path and files is deceptive. It grows, unless you time up to time clean this folder on your own. Even prominent software put tons of waste there. &nbsp;&nbsp;<sup>**_win**</sup>
 
-## Traps
-It could be trivia for many but i met following flows im some projects, and keep them as a reminder (or checklist)
-### Recursion
-"Deep" recursive calls may lead to memory leaks. It's easy to forget about that.
+&nbsp;&nbsp;<sub><sup>**_win**</sup>&nbsp;&nbsp;Windows&trade; predictably won't care about these files, say, on restart.</sub>
 
-### LINQ limitations
-LINQ is a nice tool but on large data volumes it's a performance curse.
+If your application exchanges/stores big volumes of data through %tmp%, it make sense to think of the cleaning.
+Deleting own files on exit isn't the best idea:
++ application may crash
++ you shoud distinguish between instances of the application
++ the logic for temp files could be compicated (e.g. a file shall remain by restart)
 
-### Improper multithreading in UI
-When a thread is the choice to auto-save a doc, prove something on-the-fly, it will raise access exceptions (sometimes silent).
-
-The solution is to use Idle slots in UI Dispatcher (this way spellcheck works in Microsoft&reg; Word&trade;).
-
-### Overall error handling
-..
-Handle only what you know, i.e. application specific exceptions. "Eating" Out-of-memory or disk exceptions may make a big fat system bug.
-
-### Replacing NullException with check
-Null pointer exceptions are known as *billion dollar mistake* (and the same value prize for guys with criminal energy). But next workarounds are even worse.
+The solution is dead-simple: <code>FileOptions.DeleteOnClose</code>. In the snippet below a file won't be deleted if only power supply abruptly goes off:
 ```csharp
-if (person is null)
-      return;
-      
-if (person.HasWonJackpot && person.EMail is not null)
-       NotifyImmediately(person);
+using (var fs = new FileStream(Path.GetTempFileName(), FileMode.Open,  FileAccess.ReadWrite, FileShare.None, 4096, FileOptions.DeleteOnClose)) {
+           // payload here: reading or storing data into/from shared prop
+}
+// once the stream is closed the file will be deleted
 ```
-Ideas ?
-+ Constraints
-+ 
+
+### Naming
+#### Props
+I'd prefer to name a prop <code>Unid</code>, <code>UniqueId</code> when its value is unique at least within the domain. Otherwise <code>id</code>.
+
+#### Null-coalescing 
+Matter of taste but some would like tricks like that:
+```csharp
+_order = order?? throw new ArgumentNullException(nameof(order));
+```
