@@ -89,16 +89,17 @@ Challenge: no idea how to workaround acync loading. When both setting will misle
 [Snoop WPF](https://github.com/snoopwpf) is a freeware, mature and effective inspector.
 
 ## Frameworks
-There're more than experienced providers of suites, frameworks, controls for RAD&nbsp;<sup>**_rad**</sup>. Telerik, Devexpress, Infragistics - to name a few. &nbsp;<sup>**_dx**</sup>
+There're more than experienced providers of suites, frameworks, controls for RAD&nbsp;<sup>**
+ **</sup>. Telerik, Devexpress, Infragistics - to name a few. &nbsp;<sup>**_dx**</sup>
 
 With annual licences for WPF components starting from $900 - it's a good buy for even the smallest commercial product, unless it's pure "Hello world".
 
 &nbsp;&nbsp;<sup>**_rad**</sup><sub>&nbsp;&nbsp;Rapid Application Development
-
+ 
 &nbsp;&nbsp;<sup>**_dx**</sup><sub>&nbsp;&nbsp;Devexpress's eloquent "We are your team" sounds realistic.
 
 ### Frontend
-Not in question. We shall not invent the wheel (unless it's rounder than others).
+Not in question. When application needs one (from scratch, to replace obsolete), we shan't invent the wheel (unless it's rounder than others).
 
 It's where you get the best out-of-the-box: design, professional look&feel.
 Their team focuses on WPF questions, and you - on business logic, the application and UX. 
