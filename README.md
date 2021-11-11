@@ -1,7 +1,9 @@
-# General ideas for .NET development
-Everything in this repository is the subject of IMHO (in my humble/honest opinion). I could have misunderstood or missed some points as well. Errors and mistakes are possible.
+# Notion of .NET development
+Everything here is the subject of IMHO (in my humble/honest opinion). I could have misunderstood or missed some points as well. Errors and mistakes are possible.
 
 With this said, any rational critic (review) is very welcome.
+
+General ideas you may find in the repositary convert-smth (dev_concerns.md).
 
 ## Intro
 I personally keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#. 
