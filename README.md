@@ -1,5 +1,5 @@
 # General ideas for .NET development
-Everything in this repository is the subject of IMHO (in my humble/honest opinion). I could have misunderstood or misssed some points as well. Errors and mistakes are possible.
+Everything in this repository is the subject of IMHO (in my humble/honest opinion). I could have misunderstood or missed some points as well. Errors and mistakes are possible.
 
 With this said, any rational critic (review) is very welcome.
 
@@ -8,15 +8,28 @@ I personally keep C#\.NET for the most expressive and powerfull language/platfor
 
 It evolves nonstop, giving us up-to-date concise and readable syntax. Its team learns from drawbacks and advantages of other languages.
 
-In my comprehension, the mission of C# is: you write clean code and .NET cares that it becomes effective executible. Though in C# one gets destructors, finalizers, garbage collecting, memory allocation, "door" to unsafe coding  - programming them doesn't look sound (unless it's very specific task or not conforming 3d party).
+In my comprehension, the mission of C# is: you write clean code and .NET cares that it becomes effective executible. Though in C# one gets destructors, finalizers, garbage collecting, memory allocation, "front door" to unsafe code  - programming them doesn't look sound (unless it's very specific task or not conforming 3d party).
 
-## Commercial frameworks
-I've discussed them already [here](WPF-MVVM/Guidelines.md).
+## Frameworks and libraries
+### Commercial
+I've discussed some already [here](WPF-MVVM/Guidelines.md).
+### Freeware (MIT and similar licences)
+Some projects on GitHub launched by a single person have grown to industry standards and got adopted in mainstream languages. Remember Newton.json.
+
+However when using any think if somebody other or you will be able to support and fix bugs in non-commercial 3d party, if its contributor(s) are not responding.
+
+### .NET and Microsoft
+#### LINQKit and PredicateBuilder
+These are often neglected or remain unknown.
 
 ## Practical hints
 That's what i've learned, like and follow.
-### Negate with XOR
+
+<details>
+<summary>Negate with XOR</summary>
+   
 Following snippets may look attractive to negate (inverse) a boolean:
+
 ```diff csharp
 var isLoading = false;
 // ...
@@ -28,20 +41,37 @@ var isLoading = false;
 +    legacyObject.SomeLongModuleName.PoorlyNamedVariable1 ^= true;
 // terser and prevents typing errors (when one applies a var/prop with similar name)
 ```
+</details>
 
-### *Out* can add up to readability 
+<details>
+<summary>Add up to readability with *out*</summary>
+
 ```csharp
 if (!pauseComplete(out var msRemaining))
    DoSomething();
 ```
-### Benchmark with *using*
-For simple logging, profiling put the benchmarking on <code>ctor</code> and <code>Dispose()</code> of the being *used*.
-[CallerMemberName] in the constructor will prevent mistaken names of the *benchmarked*.
+</details>
+
+<details>
+<summary>Null-coalescing</summary>
+ 
+Matter of taste but some love tricks like that:
 ```csharp
-    using (var benchmark = new Benchmark())
-    {
-        // benchmarked calls here
-    }
+_order = order?? throw new ArgumentNullException(nameof(order));
+```
+</details>
+
+<details>
+<summary>Benchmark with *using*</summary>
+For dead-simple logging, profiling put the benchmarking on <code>ctor</code> and <code>Dispose()</code> of the being *used*.
+   
+<code>[CallerMemberName]</code> in the constructor will prevent mistaken names of the being *benchmarked*.
+
+```csharp
+using (var benchmark = new Benchmark())
+{
+    // benchmarked stuff here
+}
 
 class Benchmark : IDisposable
 {
@@ -56,31 +86,41 @@ class Benchmark : IDisposable
    }
 }
 ```
-### Delete your temp data
-The naming of *temporary* path and files is deceptive. It grows, unless you time up to time clean this folder on your own. Even prominent software put tons of waste there. &nbsp;&nbsp;<sup>**_win**</sup>
+</details>
+   
+<details>
+<summary>Name "magic" values</summary>
+   
+```diff csharp
+-     legacySystem.ModuleD1.Abracadabra = true; // specifies that text input is treated culture-insensitive
++     bool IsInputCultureInvariant = ...
++     legacySystem.ModuleD1.Abracadabra = IsInputCultureInvariant;
+   
+-     popup(shortMessage).ShowFor(3200);
++     popup(shortMessage).ShowFor(Ux.Standards.MinimumMsToReadMessage);
+```
+</details>
 
-&nbsp;&nbsp;<sub><sup>**_win**</sup>&nbsp;&nbsp;Windows&trade; predictably won't care about these files, say, on restart.</sub>
+   
+<details>
+<summary>Clean your temp files</summary>
 
-If your application exchanges/stores big volumes of data through %tmp%, it make sense to think of the cleaning.
-Deleting own files on exit isn't the best idea:
+The naming of *temporary* folder (and files) is deceptive. It grows, unless you time up to time clean this folder on your own. Even prominent software put tons of waste there. &nbsp;&nbsp;<sup>**_win**</sup>
+
+&nbsp;&nbsp;<sub><sup>**_win**</sup>&nbsp;&nbsp;And Windows&trade; predictably won't care about these files, say, on restart.</sub>
+
+If your application exchanges/stores big volumes of data through %tmp%, it make sense to remove them too.
+Keeping track of created temp files and deleting them on exit (e.g. flushing specific subfolder) isn't the award-winning idea:
 + application may crash
-+ you shoud distinguish between instances of the application
-+ the logic for temp files could be compicated (e.g. a file shall remain by restart)
++ you shoud distinguish between instances of the same application
++ the logic for temp files could be compicated (e.g. biz process on the end of application)
 
-The solution is dead-simple: <code>FileOptions.DeleteOnClose</code>. In the snippet below a file won't be deleted if only power supply abruptly goes off:
+<code>FileOptions.DeleteOnClose</code> may be suitable. In the snippet below a file won't be deleted if only power supply abruptly goes off:
 ```csharp
-using (var fs = new FileStream(Path.GetTempFileName(), FileMode.Open,  FileAccess.ReadWrite, FileShare.None, 4096, FileOptions.DeleteOnClose)) {
-           // payload here: reading or storing data into/from shared prop
+using (var fs = new FileStream(Path.GetTempFileName(), FileMode.Open, 
+          FileAccess.ReadWrite, FileShare.None, 4096, FileOptions.DeleteOnClose)) {
+               // payload here: reading or storing data into/from shared prop
 }
-// once the stream is closed the file will be deleted
 ```
-
-### Naming
-#### Props
-I'd prefer to name a prop <code>Unid</code>, <code>UniqueId</code> when its value is unique at least within the domain. Otherwise <code>id</code>.
-
-#### Null-coalescing 
-Matter of taste but some would like tricks like that:
-```csharp
-_order = order?? throw new ArgumentNullException(nameof(order));
-```
+Nice to develop a kind of wrapper, through which data is sent/read to/from temp storage.
+</details>
