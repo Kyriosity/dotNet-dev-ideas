@@ -1,5 +1,4 @@
-# Notion of .NET development
-Everything here is the subject of IMHO (in my humble/honest opinion). I could have misunderstood or missed some points as well. Errors and mistakes are possible.
+Everything here is the subject of IMHO (in my humble/honest opinion). I could have misunderstood, missed some points. Errors and mistakes are also possible.
 
 With this said, any rational critic (review) is very welcome.
 
@@ -8,7 +7,7 @@ General ideas you may find in the repositary convert-smth (dev_concerns.md).
 ## Intro
 I personally keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#. 
 
-It evolves nonstop, giving us up-to-date concise and readable syntax. Its team learns from drawbacks and advantages of other languages.
+It evolves nonstop, giving us up-to-date concise and readable syntax. Its team learns from drawbacks and advantages of other languagesб and finds trade off between readability and readability.
 
 In my comprehension, the mission of C# is: you write clean code and .NET cares that it becomes effective executible. Though in C# one gets destructors, finalizers, garbage collecting, memory allocation, "front door" to unsafe code  - programming them doesn't look sound (unless it's very specific task or not conforming 3d party).
 
@@ -99,10 +98,9 @@ class Benchmark : IDisposable
 +     legacySystem.ModuleD1.Abracadabra = IsInputCultureInvariant;
    
 -     popup(shortMessage).ShowFor(3200);
-+     popup(shortMessage).ShowFor(Ux.Standards.MinimumMsToReadMessage);
++     popup(shortMessage).ShowFor(Ux.MinimumMsToReadPrompt);
 ```
 </details>
-
    
 <details>
 <summary>Clean your temp files</summary>
