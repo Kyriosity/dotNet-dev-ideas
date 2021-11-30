@@ -1,13 +1,14 @@
+## Foreword
 Everything here is the subject of IMHO (in my humble/honest opinion). I could have misunderstood, missed some points. Errors and mistakes are also possible.
 
 With this said, any rational critic (review) is very welcome.
 
-General ideas you may find in the repositary convert-smth (dev_concerns.md).
+General ideas you may find in the repository convert-smth (dev_concerns.md).
 
 ## Intro
 I personally keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#. 
 
-It evolves nonstop, giving us up-to-date concise and readable syntax. Its team learns from drawbacks and advantages of other languagesб and finds trade off between readability and readability.
+It evolves nonstop, giving us up-to-date concise and readable syntax. Its team learns from drawbacks and advantages of other languages and finds trade off between readability and brevity.
 
 In my comprehension, the mission of C# is: you write clean code and .NET cares that it becomes effective executible. Though in C# one gets destructors, finalizers, garbage collecting, memory allocation, "front door" to unsafe code  - programming them doesn't look sound (unless it's very specific task or not conforming 3d party).
 
@@ -20,6 +21,10 @@ Some projects on GitHub launched by a single person have grown to industry stand
 However when using any think if somebody other or you will be able to support and fix bugs in non-commercial 3d party, if its contributor(s) are not responding.
 
 ### .NET and Microsoft
+#### Newest language features
+Microsoft quire often releases newer versions of the platform and language.
+It's worth to spend a day evaluating and remembering them.
+
 #### LINQKit and PredicateBuilder
 These are often neglected or remain unknown.
 
