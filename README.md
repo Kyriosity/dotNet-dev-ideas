@@ -1,11 +1,10 @@
-## Foreword
 Everything here is the subject of IMHO (in my humble/honest opinion). I could have misunderstood, missed some points. Errors and mistakes are also possible.
 
 With this said, any rational critic (review) is very welcome.
 
 General ideas you may find in the repository convert-smth (dev_concerns.md).
 
-## Intro
+## Foreword
 I personally keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#. 
 
 It evolves nonstop, giving us up-to-date concise and readable syntax. Its team learns from drawbacks and advantages of other languages and finds trade off between readability and brevity.
@@ -29,12 +28,9 @@ It's worth to spend a day evaluating and remembering them.
 These are often neglected or remain unknown.
 
 ## Practical hints
-That's what i've learned, like and follow.
 
 <details>
-<summary>Negate with XOR</summary>
-   
-Following snippets may look attractive to negate (inverse) a boolean:
+<summary><b>Negate with XOR</b></summary>
 
 ```diff csharp
 var isLoading = false;
@@ -47,19 +43,20 @@ var isLoading = false;
 +    legacyObject.SomeLongModuleName.PoorlyNamedVariable1 ^= true;
 // terser and prevents typing errors (when one applies a var/prop with similar name)
 ```
+   
 </details>
 
 <details>
-<summary>Add up to readability with *out*</summary>
+<summary><b><i>out</i> for readability</b></summary>
 
 ```csharp
 if (!pauseComplete(out var msRemaining))
-   DoSomething();
+   module.Sleep(msRemaining);
 ```
 </details>
 
 <details>
-<summary>Null-coalescing</summary>
+<summary><b>Null-coalescing</b></summary>
  
 Matter of taste but some love tricks like that:
 ```csharp
@@ -68,7 +65,7 @@ _order = order?? throw new ArgumentNullException(nameof(order));
 </details>
 
 <details>
-<summary>Benchmark with *using*</summary>
+<summary><b>Benchmark with <i>using</i></b></summary>
 For dead-simple logging, profiling put the benchmarking on <code>ctor</code> and <code>Dispose()</code> of the being *used*.
    
 <code>[CallerMemberName]</code> in the constructor will prevent mistaken names of the being *benchmarked*.
@@ -95,7 +92,7 @@ class Benchmark : IDisposable
 </details>
    
 <details>
-<summary>Name "magic" values</summary>
+<summary><b>Name "magic" values</b></summary>
    
 ```diff csharp
 -     legacySystem.ModuleD1.Abracadabra = true; // specifies that text input is treated culture-insensitive
@@ -108,7 +105,7 @@ class Benchmark : IDisposable
 </details>
    
 <details>
-<summary>Clean your temp files</summary>
+<summary><b>Clean your temp files</b></summary>
 
 The naming of *temporary* folder (and files) is deceptive. It grows, unless you time up to time clean this folder on your own. Even prominent software put tons of waste there. &nbsp;&nbsp;<sup>**_win**</sup>
 
