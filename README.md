@@ -1,3 +1,4 @@
+
 Everything here is the subject of IMHO (in my humble/honest opinion). I could have misunderstood, missed some points. Errors and mistakes are also possible.
 
 With this said, any rational critic (review) is very welcome.
@@ -5,7 +6,7 @@ With this said, any rational critic (review) is very welcome.
 General ideas you may find in the repository convert-smth (dev_concerns.md).
 
 ## Foreword
-I personally keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#. 
+Personally i keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#. 
 
 It evolves nonstop, giving us up-to-date concise and readable syntax. Its team learns from drawbacks and advantages of other languages and finds trade off between readability and brevity.
 
@@ -19,13 +20,16 @@ Some projects on GitHub launched by a single person have grown to industry stand
 
 However when using any think if somebody other or you will be able to support and fix bugs in non-commercial 3d party, if its contributor(s) are not responding.
 
-### .NET and Microsoft
-#### Newest language features
-Microsoft quire often releases newer versions of the platform and language.
-It's worth to spend a day evaluating and remembering them.
+## .NET and Microsoft specific
+What's often neglected or remain unknown.
+### Newest platform features
+Microsoft quite often releases newer versions of .NET and its languages.
+It's worth to spend a day evaluating and remembering <i>what's new</i>.
 
-#### LINQKit and PredicateBuilder
+### LINQKit and PredicateBuilder
 These are often neglected or remain unknown.
+
+### Named tuples
 
 ## Practical hints
 
@@ -47,7 +51,7 @@ var isLoading = false;
 </details>
 
 <details>
-<summary><b><i>out</i> for readability</b></summary>
+<summary><b><code>out</code> for readability</b></summary>
 
 ```csharp
 if (!pauseComplete(out var msRemaining))
@@ -57,16 +61,16 @@ if (!pauseComplete(out var msRemaining))
 
 <details>
 <summary><b>Null-coalescing</b></summary>
- 
-Matter of taste but some love tricks like that:
+This will spare at least a line.
+   
 ```csharp
 _order = order?? throw new ArgumentNullException(nameof(order));
 ```
 </details>
 
 <details>
-<summary><b>Benchmark with <i>using</i></b></summary>
-For dead-simple logging, profiling put the benchmarking on <code>ctor</code> and <code>Dispose()</code> of the being *used*.
+<summary><b>Benchmark with <code>using</code></b></summary>
+For straightforward logging/profiling use <code>ctor</code> and <code>Dispose()</code> of a being *used* benchmark.
    
 <code>[CallerMemberName]</code> in the constructor will prevent mistaken names of the being *benchmarked*.
 
@@ -90,7 +94,15 @@ class Benchmark : IDisposable
 }
 ```
 </details>
-   
+
+<details>
+<summary><code>nameof</code><b> is good, <code>CallerMemberName</code> may be better</b></summary>
+
+</details>
+```diff csharp
++   public
+-   private
+```
 <details>
 <summary><b>Name "magic" values</b></summary>
    
@@ -100,18 +112,18 @@ class Benchmark : IDisposable
 +     legacySystem.ModuleD1.Abracadabra = IsInputCultureInvariant;
    
 -     popup(shortMessage).ShowFor(3200);
-+     popup(shortMessage).ShowFor(Ux.MinimumMsToReadPrompt);
++     popup(shortMessage).ShowFor(Ux.Milliseconds.MinToReadPrompt);
 ```
 </details>
    
 <details>
-<summary><b>Clean your temp files</b></summary>
+<summary><b>Clean temp files</b></summary>
 
-The naming of *temporary* folder (and files) is deceptive. It grows, unless you time up to time clean this folder on your own. Even prominent software put tons of waste there. &nbsp;&nbsp;<sup>**_win**</sup>
+The naming of *temporary* folder (and files) is deceptive. It grows, unless you time up to time clean this folder on your own. Even prominent applications put tons of waste there. &nbsp;&nbsp;<sup>**_win**</sup>
 
 &nbsp;&nbsp;<sub><sup>**_win**</sup>&nbsp;&nbsp;And Windows&trade; predictably won't care about these files, say, on restart.</sub>
 
-If your application exchanges/stores big volumes of data through %tmp%, it make sense to remove them too.
+If your application exchanges/stores big volumes of data through %tmp%, it's nice .
 Keeping track of created temp files and deleting them on exit (e.g. flushing specific subfolder) isn't the award-winning idea:
 + application may crash
 + you shoud distinguish between instances of the same application
