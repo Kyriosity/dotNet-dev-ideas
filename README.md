@@ -21,20 +21,27 @@ Some projects on GitHub launched by a single person have grown to industry stand
 However when using any think if somebody other or you will be able to support and fix bugs in non-commercial 3d party, if its contributor(s) are not responding.
 
 ## .NET and Microsoft specific
-What's often neglected or remain unknown.
+What's often neglected, forgotten or remains unknown.
 ### Newest platform features
-Microsoft quite often releases newer versions of .NET and its languages.
+Microsoft quite often releases newer versions of .NET.
 It's worth to spend a day evaluating and remembering <i>what's new</i>.
 
 ### LINQKit and PredicateBuilder
-These are often neglected or remain unknown.
+Are worth of review.
 
-### Named tuples
+### Tuples and records
+C# devs mostly think in interfaces and objects, sometimes structs.
+Nevertheless records and tuples gain focus in recent C# versions.
+
+#### Named tuples
+A nice shortcut to return a complex values.
+
+#### Record classes
 
 ## Practical hints
 
 <details>
-<summary><b>Negate with XOR</b></summary>
+<summary><b>negate with XOR</b></summary>
 
 ```diff csharp
 var isLoading = false;
@@ -47,11 +54,10 @@ var isLoading = false;
 +    legacyObject.SomeLongModuleName.PoorlyNamedVariable1 ^= true;
 // terser and prevents typing errors (when one applies a var/prop with similar name)
 ```
-   
 </details>
 
 <details>
-<summary><b><code>out</code> for readability</b></summary>
+<summary><code>out</code> <b>for readability</b></summary>
 
 ```csharp
 if (!pauseComplete(out var msRemaining))
@@ -60,7 +66,7 @@ if (!pauseComplete(out var msRemaining))
 </details>
 
 <details>
-<summary><b>Null-coalescing</b></summary>
+<summary><b>condense with null-coalescing</b></summary>
 This will spare at least a line.
    
 ```csharp
@@ -69,7 +75,7 @@ _order = order?? throw new ArgumentNullException(nameof(order));
 </details>
 
 <details>
-<summary><b>Benchmark with <code>using</code></b></summary>
+<summary><b>benchmark easy with</b> <code>using</code></summary>
 For straightforward logging/profiling use <code>ctor</code> and <code>Dispose()</code> of a being *used* benchmark.
    
 <code>[CallerMemberName]</code> in the constructor will prevent mistaken names of the being *benchmarked*.
@@ -96,15 +102,22 @@ class Benchmark : IDisposable
 </details>
 
 <details>
-<summary><code>nameof</code><b> is good, <code>CallerMemberName</code> may be better</b></summary>
-
+<summary><b>named tuples for return</b></summary>
+Even in the stricktest OOD does not manadate to declare objects for every trifle. And declarei
+   
 </details>
+   
+<details>
+<summary><code>nameof</code><b> is good, <code></b>CallerMemberName</code> <b>may be better</b></summary>
+
 ```diff csharp
 +   public
 -   private
-```
+```   
+</details>
+
 <details>
-<summary><b>Name "magic" values</b></summary>
+<summary><b>name "magic" values</b></summary>
    
 ```diff csharp
 -     legacySystem.ModuleD1.Abracadabra = true; // specifies that text input is treated culture-insensitive
@@ -117,7 +130,7 @@ class Benchmark : IDisposable
 </details>
    
 <details>
-<summary><b>Clean temp files</b></summary>
+<summary><b>сlean temp files</b></summary>
 
 The naming of *temporary* folder (and files) is deceptive. It grows, unless you time up to time clean this folder on your own. Even prominent applications put tons of waste there. &nbsp;&nbsp;<sup>**_win**</sup>
 
