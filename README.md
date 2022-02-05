@@ -38,6 +38,9 @@ Nevertheless records and tuples gain focus in recent C# versions.
 #### Named tuples
 A nice shortcut to return a complex values.
 
+### Multithreading
+Parallel for each
+
 #### Record classes
 
 ## Further reading
