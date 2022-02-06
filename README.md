@@ -6,7 +6,7 @@ With this said, any rational critic (review) is very welcome.
 General ideas you may find in the repository convert-smth (dev_concerns.md).
 
 ## Foreword
-I personally keep C#\.NET for the most expressive and powerfull language/platform for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#.
+C#\.NET deserves to be noted as one of the most expressive and powerfull language/platforms for business applications. It's a flagship of Microsoft&#174; (enough said), where the ship is .NET and the flag is C#.
 
 It evolves nonstop, giving us up-to-date concise and comprehensible syntax. Its team learns from drawbacks and advantages of other languages and finds trade off between readability and brevity.
 
@@ -39,7 +39,8 @@ Nevertheless records and tuples gain focus in recent C# versions.
 A nice shortcut to return a complex values.
 
 ### Multithreading
-Parallel for each
+Quite often treated as unsafe, hard to learn and debug = in fact it's out-of=the box, easy and really advantage.
+Just test how reliable and effective is `Parallel.ForEach()`.
 
 #### Record classes
 
