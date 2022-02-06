@@ -45,25 +45,30 @@ if (!pauseComplete(out var msRemaining))
 
 </details>
 
- 
-
 <details>
 
-<summary><b>condense with null-coalescing</b></summary>
+<summary><b>Use <code>_</code> discards</b></summary>
 
-This will spare at least a line.
-
-   
+For *null-coalescing*
 
 ```csharp
 
-_order = order?? throw new ArgumentNullException(nameof(order));
+_order = order?? throw new ArgumentNullException(nameof(order)); // at least one line spared
 
 ```
 
-</details>
-
+ To avoid visual noise from needless there but required by signature arguments
+ ```csharp
+ protected virtual void OnThresholdReached(sender _, EventArgs __) { BlueScreenError.Surprise(); };
+ ```
  
+ To note that a method is used for side-effect
+ ```csharp
+ _ = TryParse(input, out int value);
+ _ 
+ ```
+ 
+</details>
 
 <details>
 
@@ -71,11 +76,7 @@ _order = order?? throw new ArgumentNullException(nameof(order));
 
 For straightforward logging/profiling use <code>ctor</code> and <code>Dispose()</code> of a being *used* benchmark.
 
-   
-
 <code>[CallerMemberName]</code> in the constructor will prevent mistaken names of the being *benchmarked*.
-
- 
 
 ```csharp
 
@@ -109,8 +110,6 @@ class Benchmark : IDisposable
 
 </details>
 
- 
-
 <details>
 
 <summary><b>named tuples for return</b></summary>
@@ -125,13 +124,10 @@ Even in the stricktest OOD does not manadate to declare objects for every trifle
 
 </details>
 
-   
-
 <details>
 
 <summary><code>nameof</code><b> is good, <code></b>CallerMemberName</code> <b>may be better</b></summary>
 
- 
 
 ```diff csharp
 
@@ -142,7 +138,6 @@ Even in the stricktest OOD does not manadate to declare objects for every trifle
 ```  
 
 </details>
-
  
 
 <details>
@@ -168,21 +163,23 @@ Even in the stricktest OOD does not manadate to declare objects for every trifle
 ```
 
 </details>
+ 
 ## Good Parts
 <details>
 
-<summary><b>сlean temp files</b></summary>
-
+<summary># Basic guards</summary>
+ </details>
  
+ <details>
+
+<summary><b>Cleaned temp files</b></summary>
 
 The naming of *temporary* folder (and files) is deceptive. It grows, unless you time up to time clean this folder on your own. Even prominent applications put tons of waste there. &nbsp;&nbsp;<sup>**_win**</sup>
 
- 
 
 &nbsp;&nbsp;<sub><sup>**_win**</sup>&nbsp;&nbsp;And Windows&trade; predictably won't care about these files, say, on restart.</sub>
 
  
-
 If your application exchanges/stores big volumes of data through %tmp%, it's nice .
 
 Keeping track of created temp files and deleting them on exit (e.g. flushing specific subfolder) isn't the award-winning idea:
