@@ -25,35 +25,31 @@ What's often neglected, forgotten or remains unknown.
 Microsoft quite often releases newer versions of .NET, worth to spend a day evaluating and remembering <i>what's new</i>.
 If Microsoft notes aren't enough, there're plenty of smart guys, revieweing them in a detail.
  
-### Tuples and records
+### Records
 C# devs mostly think in interfaces and objects, sometimes structs.
-Nevertheless records and tuples gain more focus and power in recent C# versions.
+*Records* appeared only in C#. 9 and gain more and more power.
+TO BE CONTINUED
  
-#### Named tuples
-A nice shortcut to return a complex values. Problem: can't cast them to interface or object.
 
-#### Records
-TBD
- 
 ### Multitasking
-Concerns over complexity and opacity divert some from taking adavantage of parallelism.
+Concerns over complexity and opacity divert some from the use of parallelism.
 But look, are there semaphores, threads/pools in the next snippet?
-```dif csharp
-...
+
+```diff csharp
+///
    var nats = Enumerable.Range(1, 28 * 1000 * 1000).ToArray();
-   - foreach (var item in nats) 
-   -   CalcHard(item);
-   + Parallel.ForEach(nats, CalcHard); // worked twice faster on my notebook
-...
+-      foreach (var item in nats) {  CalcHard(item); }
++      Parallel.ForEach(nats, CalcHard); // worked twice faster on my notebook
+///
    
 static void CalcHard(int nat) {
    using var sha = SHA512.Create();
    _ = sha.ComputeHash(Encoding.UTF8.GetBytes(((int)Math.Sqrt(nat) / Math.Atan2(nat, nat)).ToString()));
  }
 ```
-Going further with parallelism will require more know-hows but C# cares that you think in abstract terms.
-The main rule is: test if multitasking spares time or provides responsible UI.
+
+Whether you apply such simple tricks or take the most of [TPL](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl) - the same rule applies. Just test if you visibly gain in performance or UI responsibility _on usual user hardware_.
 
 ## Further manuscripts
 [Practical hints for development](readme+/practical_hints.md)\
-[Intro and guidelines for WPF](readme+/wpf_mvvm_intro.md)
+[WPF and guidelines](readme+/wpf_mvvm_intro.md)
